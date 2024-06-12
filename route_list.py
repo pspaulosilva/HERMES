@@ -27,7 +27,7 @@ def lambda_handler(event, context):
     
     result =  response.get("Items", [])
     
-    # TODO implement
+    # Sucesso
     return api_result(True, result)
 
 # Objeto de retorno para a API

@@ -46,7 +46,7 @@ def lambda_handler(event, context):
         Item = data
     )
     
-    # TODO implement
+    # Sucesso
     return api_result(True, f"Rota {route_id} criada com sucesso.")
 
 # Objeto de retorno para a API

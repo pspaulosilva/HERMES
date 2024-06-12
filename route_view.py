@@ -9,10 +9,7 @@ def lambda_handler(event, context):
     
     # Valida os parâmetros
     if "location_code" not in event or "route_id" not in event:
-        return {
-            'statusCode': 400,
-            'body': "Parâmetros incorretos"
-        }
+        return api_result(False, "Parâmetros incorretos")
     
     # Código da localização (ex.: rec)
     location_code = event["location_code"]
@@ -26,15 +23,16 @@ def lambda_handler(event, context):
     
     # Valida se a rota existe no BD
     if "Item" not in response:
-        return {
-            'statusCode': 400,
-            'body': "Rota não encontrada"
-        }
+        return api_result(False, "Rota não encontrada")
     
     result =  response.get("Item", {})
     
-    # TODO implement
+    # Sucesso
+    return api_result(True, result)
+
+# Objeto de retorno para a API
+def api_result (success, body):
     return {
-        'statusCode': 200,
-        'body': result
+        'statusCode': 200 if success else 400,
+        'body': body
     }
